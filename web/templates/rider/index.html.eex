@@ -1,0 +1,28 @@
+<h2>Listing riders</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Licence</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for rider <- @riders do %>
+    <tr>
+      <td><%= rider.name %></td>
+      <td><%= rider.licence %></td>
+
+      <td class="text-right">
+        <%= link "Show", to: rider_path(@conn, :show, rider), class: "btn btn-default btn-xs" %>
+        <%= link "Edit", to: rider_path(@conn, :edit, rider), class: "btn btn-default btn-xs" %>
+        <%= link "Delete", to: rider_path(@conn, :delete, rider), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%= link "New rider", to: rider_path(@conn, :new) %>

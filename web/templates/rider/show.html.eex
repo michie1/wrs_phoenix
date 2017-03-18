@@ -1,0 +1,18 @@
+<h2>Show rider</h2>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @rider.name %>
+  </li>
+
+  <li>
+    <strong>Licence:</strong>
+    <%= @rider.licence %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: rider_path(@conn, :edit, @rider) %>
+<%= link "Back", to: rider_path(@conn, :index) %>

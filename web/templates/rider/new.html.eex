@@ -1,0 +1,6 @@
+<h2>New rider</h2>
+
+<%= render "form.html", changeset: @changeset,
+                        action: rider_path(@conn, :create) %>
+
+<%= link "Back", to: rider_path(@conn, :index) %>

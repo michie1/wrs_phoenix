@@ -1,0 +1,33 @@
+<h2>Show result</h2>
+
+<ul>
+
+  <li>
+    <strong>Riderid:</strong>
+    <%= @result.riderId %>
+  </li>
+
+  <li>
+    <strong>Raceid:</strong>
+    <%= @result.raceId %>
+  </li>
+
+  <li>
+    <strong>Result:</strong>
+    <%= @result.result %>
+  </li>
+
+  <li>
+    <strong>Category:</strong>
+    <%= @result.category %>
+  </li>
+
+  <li>
+    <strong>Strava:</strong>
+    <%= @result.strava %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: result_path(@conn, :edit, @result) %>
+<%= link "Back", to: result_path(@conn, :index) %>
