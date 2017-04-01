@@ -1,5 +1,6 @@
 defmodule WrsPhoenix.RoomChannel do
   use Phoenix.Channel
+  use Ecto.Model
   require Logger
 
   alias WrsPhoenix.Rider
@@ -38,7 +39,9 @@ defmodule WrsPhoenix.RoomChannel do
   end
   
   def handle_in("races", %{}, socket) do
-    case WrsPhoenix.Repo.all(WrsPhoenix.Race) do
+    # case WrsPhoenix.Repo.all(WrsPhoenix.Race) do
+    query = from(r in WrsPhoenix.Race, [order_by: [desc: r.date], limit: 100])
+    case WrsPhoenix.Repo.all(query) do
       nil -> 
         {:reply, {:ok, %{}}, socket}
 
@@ -53,7 +56,9 @@ defmodule WrsPhoenix.RoomChannel do
   end  
 
   def handle_in("results", %{}, socket) do
-    case WrsPhoenix.Repo.all(WrsPhoenix.Result) do
+    # case WrsPhoenix.Repo.all(WrsPhoenix.Result) do
+    query = from(r in WrsPhoenix.Result, [order_by: [desc: r.raceId], limit: 1000])
+    case WrsPhoenix.Repo.all(query) do
       nil -> 
         {:reply, {:ok, %{}}, socket}
 
