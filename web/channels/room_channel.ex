@@ -185,7 +185,21 @@ defmodule WrsPhoenix.RoomChannel do
     end
 
   end
-  
+
+  def handle_in("getStravaAccessToken", payload, socket) do
+    Logger.debug "getStravaAccessToken"
+    Logger.debug payload["code"]
+    url = "https://www.strava.com/oauth/token"
+    body = "client_id=1596&client_secret=95bb6e28af130c291c8b1437b5a51f01b94eb610&code=" <> payload["code"]
+    Logger.debug body
+    response = HTTPotion.post url, 
+      [body: body,
+       headers: ["User-Agent": "My App", "Content-Type": "application/x-www-form-urlencoded"]
+      ]
+    Logger.debug response.body
+    {:reply, {:ok, %{body: response.body}}, socket}
+  end
+
   defp riders_to_map(riders) do
     Enum.map(
       riders, 
